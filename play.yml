@@ -3,9 +3,11 @@
   tasks:
   - name: Create Docker Image from DockerFile
     command: docker build . -t bijoyashis/myapp-image:v1
+    args:
+      chdir: /opt/Docker/workspace/Deploy_To_Tomcat_Container_Using_Ansible_Pipeline_Project
   - name: Push Image to DockerHub
     command: docker push bijoyashis/myapp-image:v1
- 
+
 - hosts: docker
   tasks:
   - name: Stop running container if any

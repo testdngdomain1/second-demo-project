@@ -2,9 +2,7 @@
 - hosts: ansible
   tasks:
   - name: Create Docker Image from DockerFile
-    command: docker build -t bijoyashis/myapp-image:v1 .
-    args:
-      chdir: /opt/Docker
+    command: docker build . -t bijoyashis/myapp-image:v1
   - name: Push Image to DockerHub
     command: docker push bijoyashis/myapp-image:v1
 ---

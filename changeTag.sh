@@ -1,1 +1,1 @@
-sed 's/TAG/${env.BUILD_NUMBER}/g' play.yml
+sed 's/TAG/$1/g' play.yml

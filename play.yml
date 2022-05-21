@@ -1,0 +1,23 @@
+---
+- hosts: ansible
+  tasks:
+  - name: Create Docker Image from DockerFile
+    command: docker build -t bijoyashis/myapp-image:v1 .
+    args:
+      chdir: /opt/Docker
+  - name: Push Image to DockerHub
+    command: docker push bijoyashis/myapp-image:v1
+---
+- hosts: docker
+  tasks:
+  - name: Stop running container if any
+    command: docker stop myapp-container
+    ignore_errors: yes
+  - name: Remove running container if any
+    command: docker rm myapp-container
+    ignore_errors: yes
+  - name: Remove Created Image from DockerHost Local System if any
+    command: docker rmi bijoyashis/myapp-image:v1
+    ignore_errors: yes
+  - name: Create Docker Container from Image
+    command: docker run -d --name myapp-container -p 8080:8080 bijoyashis/myapp-image:v1

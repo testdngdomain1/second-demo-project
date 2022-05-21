@@ -5,7 +5,7 @@
     command: docker build . -t bijoyashis/myapp-image:v1
   - name: Push Image to DockerHub
     command: docker push bijoyashis/myapp-image:v1
----
+ 
 - hosts: docker
   tasks:
   - name: Stop running container if any
